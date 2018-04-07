@@ -1,4 +1,4 @@
-# PubgApiWrapper
+# Pubg Api Wrapper
 ## Description:
 Custom wrapper for the PUBG API using python. Because the data is returned in a huge block of JSON as defined in [PUBG's API documentation](https://documentation.playbattlegrounds.com/en/introduction.html), I converted the JSON data into different objects that can retreieve the data needed.
 
