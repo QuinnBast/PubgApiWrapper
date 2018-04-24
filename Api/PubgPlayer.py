@@ -9,7 +9,7 @@ class PubgPlayer():
                 return str(self.data['attributes']['name'])
 
         def getPlayerId(self):
-                return str(self.data['id'].split('.')[1])
+                return str(self.data['id'])
 
         def getPlayerMatches(self):
                 return self.matches

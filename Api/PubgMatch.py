@@ -13,15 +13,16 @@ class PubgMatch():
         def getMapName(self):
                 return str(self.data['attributes']['mapName'])
         
-        def getPlayers(self):
+        def getMatchPlayerDict(self):
                 players = []
                 for obj in self.included:
                         if str(obj['type']) != "participant":
                                 continue;
                         
                         #We now have each player in the match.
-                        player = PubgApi().getPlayerFromId(obj['attributes']['stats']['playerId'])
-                        players += [player]
+                        player = [{'id': obj['attributes']['stats']['playerId'], 'name': obj['attributes']['stats']['name']}]
+                        if (player is not False):
+                                players += player
                 return players
 
 #ToDO
@@ -44,7 +45,7 @@ class PubgMatch():
                                 continue;
                         
                         #We have all participants.
-                        if str(obj['attributes']['stats']['playerId']).split('.')[1] == self.player.getPlayerId():
+                        if str(obj['attributes']['stats']['playerId']) == self.player.getPlayerId():
                                 return PubgPlayerMatchData(obj['attributes']['stats'])
 
         def getTelemetry(self):
@@ -53,4 +54,4 @@ class PubgMatch():
                                 continue;
                         
                         if obj['attributes']['name'] == "telemetry":
-                                return PubgApi().getMatchTelemetry(str(asset['attributes']['URL']))
+                                return PubgApi.PubgApi().getMatchTelemetry(str(obj['attributes']['URL']))

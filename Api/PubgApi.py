@@ -10,13 +10,25 @@ class PubgApi():
 		self.header = apiKey.getApiHeader()
 
 	def getPlayerFromString(self, playerName):
-		return PubgPlayer(requests.get("https://api.playbattlegrounds.com/shards/pc-na/players?filter[playerNames]=" + str(playerName), headers=self.header).json()["data"][0])
+                response = requests.get("https://api.playbattlegrounds.com/shards/pc-na/players?filter[playerNames]=" + str(playerName), headers=self.header)
+                if response.ok:
+                        return PubgPlayer(response.json()["data"][0])
+                else:
+                        return False
 
 	def getPlayerFromId(self, playerId):
-                return PubgPlayer(requests.get("https://api.playbattlegrounds.com/shards/pc-na/players/" + str(playerId), headers=self.header).json()["data"][0])
+                response = requests.get("https://api.playbattlegrounds.com/shards/pc-na/players/" + str(playerId), headers=self.header)
+                if response.ok:
+                        return PubgPlayer(response.json()['data'])
+                else:
+                        return False
         
 	def getMatch(self, matchId, player):
-                return PubgMatch(requests.get("https://api.playbattlegrounds.com/shards/pc-na/matches/" + str(matchId), headers=self.header).json(), player)
+                response = requests.get("https://api.playbattlegrounds.com/shards/pc-na/matches/" + str(matchId), headers=self.header)
+                if response.ok:
+                        return PubgMatch(response.json(), player)
+                else:
+                        return False
 
         def getMatchTelemetry(self, telemetryUrl):
                 return PubgMatchTelemetry(requests.get(str(telemetryUrl), headers=self.header).json())

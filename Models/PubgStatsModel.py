@@ -2,8 +2,9 @@ import peewee
 import re
 from peewee import *
 import datetime
+import conn
 
-conn = MySQLDatabase('CrawlerDatabase', user='root', passwd='C:hDrh"Ey2X@){]@`:C3w6!E5bjTE2]-')
+conn = dbConnection()
 
 class BaseModel(peewee.Model):
 	class Meta:
@@ -29,5 +30,4 @@ class PubgStatsModel(BaseModel):
 
 	def __init__(self):
                 self.date = datetime.datetime.now()
-                conn.connect()
                 conn.create_tables([PubgStats])
