@@ -13,7 +13,7 @@ Using the API Wrapper, I will create a crawler which will go through various pla
 - Use of database Models to more easily update database entries
 - Creation of infographics/graphs/etc. from large amounts of data over time
 
-##Note to self:
+## Note to self:
 https://www.patrick-wied.at/static/heatmapjs/docs.html#heatmap-getData
 https://github.com/pa7/heatmap.js
 https://www.w3schools.com/tags/canvas_arc.asp
